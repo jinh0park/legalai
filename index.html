@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GPT-4가 미국 통일변호사시험에서 받은 297점은 어떻게 계산됐을까요? 시험 구성, 답안 사례, 상위 10% 주장에 대한 재평가를 함께 읽습니다.">
+    <meta name="theme-color" content="#f8f6f1">
+    <title>GPT-4는 미국 변호사시험을 어떻게 통과했을까요? | Legal AI 연구 노트</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#article">본문으로 건너뛰기</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="site-name" href="./" aria-label="Legal AI 연구 노트 홈">Legal AI <span>연구 노트</span></a>
+        <a class="header-link" href="#references">참고 문헌 <span aria-hidden="true">↘</span></a>
+      </div>
+    </header>
+
+    <main>
+      <article id="article" aria-labelledby="article-title" tabindex="-1">
+        <header class="article-header shell">
+          <p class="series">LLM 시대의 Legal AI <span aria-hidden="true">/</span> 첫 번째 글</p>
+          <h1 id="article-title">GPT-4는 미국 변호사시험을<br class="desktop-break"> 어떻게 통과했을까요?</h1>
+          <p class="dek">297점은 어떻게 계산됐을까요? 시험 문제와 답안을 살펴보고, 같은 점수가 왜 서로 다른 백분위로 해석됐는지 짚어봅니다.</p>
+          <div class="paper-meta">
+            <cite lang="en">GPT-4 Passes the Bar Exam</cite>
+            <span>Katz, Bommarito, Gao &amp; Arredondo</span>
+            <span>2023년 공개 · 2024년 출판</span>
+          </div>
+        </header>
+
+        <div class="shell article-layout">
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 id="toc-title">목차</h2>
+            <ol>
+              <li><a href="#exam">어떤 시험을 풀었나요?</a></li>
+              <li><a href="#method">시험을 어떻게 치렀나요?</a></li>
+              <li><a href="#results">297점은 어떻게 나왔나요?</a></li>
+              <li><a href="#example">답안에서는 무엇이 달랐나요?</a></li>
+              <li><a href="#percentile">‘상위 10%’를 어떻게 읽어야 할까요?</a></li>
+              <li><a href="#legacy">이 논문에서 이어진 질문</a></li>
+            </ol>
+          </nav>
+
+          <div class="article-body">
+            <p class="opening">2023년 3월, 대규모 언어모델 GPT-4가 미국 변호사시험에서 합격선보다 높은 점수를 받았다는 연구가 공개됐습니다. 몇 달 앞선 실험에서는 <span lang="en">text-davinci-003</span>이라는 이전 세대 모델이 객관식 영역에서 약 절반을 맞혔습니다. 이번에는 연구진이 객관식뿐 아니라, 법률 논술과 사건 기록을 읽고 메모를 쓰는 실무형 문제까지 풀게 했습니다. <a class="source" href="https://arxiv.org/abs/2212.14402">앞선 객관식 실험</a> · <a class="source" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4389233">2023년 공개본</a></p>
+
+            <section id="exam">
+              <h2>어떤 시험을 풀었나요?</h2>
+              <p>논문에서 말하는 변호사시험은 미국의 <strong>통일변호사시험</strong>(Uniform Bar Examination, UBE)입니다. 연구 당시 UBE는 미국의 여러 관할이 공통으로 사용하던 시험이었습니다. 시험 구성과 점수 척도는 공통이지만, 합격선은 관할마다 달랐습니다. 연구진이 제시한 당시 합격선은 400점 만점에 260~273점이었습니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#sec2">원 논문 §2, §4(d)</a></p>
+
+              <table class="exam-table">
+                <caption>연구 당시 UBE의 세 영역</caption>
+                <thead>
+                  <tr><th scope="col">영역</th><th scope="col">무엇을 하나요?</th><th scope="col">비중</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">MBE <span>객관식</span></th><td>계약법·증거법 등 7개 과목에서 답을 고르는 200문항</td><td>50%</td></tr>
+                  <tr><th scope="row">MEE <span>논술</span></th><td>주어진 사실관계에서 쟁점을 찾고 법리를 적용하는 6문제</td><td>30%</td></tr>
+                  <tr><th scope="row">MPT <span>실무형</span></th><td>사건 기록과 제공된 법률 자료로 메모 등을 작성하는 2문제</td><td>20%</td></tr>
+                </tbody>
+              </table>
+
+              <p>MEE와 MPT의 차이를 알아두면 뒤의 결과가 훨씬 잘 읽힙니다. MEE에서는 수험생이 알아야 할 법리를 답안에 꺼내 적용합니다. MPT에서는 기록과 함께 문제를 푸는 데 필요한 법률 자료도 주어집니다. 가상의 관할을 전제로 한 문제라면, 평소 알고 있는 법이 익숙해도 시험에 제시된 법과 판례가 기준이 됩니다. 긴 자료에서 필요한 문장을 찾아 그 사안에 맞게 쓰는 능력이 중요해지는 이유입니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#sec4">원 논문 §4(c)</a></p>
+            </section>
+
+            <section id="method">
+              <h2>시험을 어떻게 치렀나요?</h2>
+              <p>연구진은 초기 GPT-4에 문제와 지시문을 텍스트로 입력했습니다. <strong>제로샷</strong>으로 평가했다는 것은 시험을 풀기 전에 예시 문답을 함께 제시하지 않았다는 뜻입니다. 객관식에는 과거 시험 문항을 모은 공식 연습시험을, 논술과 실무형에는 2022년 7월에 출제된 문제를 사용했습니다. 연구진은 OpenAI와 함께 문항이 훈련 자료에 포함됐는지도 점검했고, 확인 결과 평가에 사용한 문항의 오염을 발견하지 않았다고 보고했습니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#sec3">원 논문 §3</a></p>
+              <p>객관식은 문항별로 정답 여부를 자동 채점하고, 여러 실행의 평균을 냈습니다. 서술형은 큰 문제를 <strong>소문항 단위</strong>로 나눠 입력했습니다. 문항을 하나씩 제시했을 때 답안이 더 구체적이었기 때문입니다. 논술 답안은 연구진 중 법학 교수와 변호사가 주 시험기관이 공개한 우수 답안과 비교해 함께 점수를 매겼고, 동료 검토자에게도 일부 답안을 보여줬습니다. 실무형 답안도 공개 우수 답안과 비교해 채점했습니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#sec4">원 논문 §4(b)–(c)</a></p>
+            </section>
+
+            <section id="results">
+              <h2>297점은 어떻게 나왔나요?</h2>
+              <p>변화가 가장 분명하게 드러난 곳은 객관식입니다. GPT-4의 평균 정답률은 <strong>75.7%</strong>, 비교에 사용한 초기 ChatGPT는 <strong>49.2%</strong>였습니다. 두 수치의 차이는 26.5%포인트입니다. 과목별로는 편차가 있었습니다. GPT-4는 계약법에서 88.1%, 증거법에서 85.2%를 맞혔지만 민사소송법에서는 61.1%였습니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#tbl2">원 논문 표 2–3</a></p>
+
+              <figure class="score-figure">
+                <div class="score-heading">
+                  <h3>모의 UBE 환산 총점</h3>
+                  <span>400점 만점</span>
+                </div>
+                <ul class="score-bars" role="list">
+                  <li class="score-row">
+                    <span>GPT-4</span>
+                    <span class="bar-track" aria-hidden="true"><span class="bar-fill gpt-4"></span></span>
+                    <strong>297<span class="unit">점</span></strong>
+                  </li>
+                  <li class="score-row">
+                    <span>초기 ChatGPT</span>
+                    <span class="bar-track" aria-hidden="true"><span class="bar-fill early-chatgpt"></span></span>
+                    <strong>213<span class="unit">점</span></strong>
+                  </li>
+                </ul>
+                <figcaption>출처 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#tbl7">Katz 외(2024), 표 7</a></figcaption>
+              </figure>
+
+              <p>GPT-4의 논술과 실무형 원점수는 각각 평균 6점 만점에 4.2점이었습니다. 연구진이 UBE 척도로 환산한 GPT-4의 영역별 점수는 <strong>객관식 157점, 논술 84점, 실무형 56점</strong>이었고, 세 점수를 더해 297점이 됐습니다. 객관식 정답률 75.7%와 환산점수 157점은 논문에서 각각 따로 보고한 값입니다. 연구진의 추정치인 297점은 논문이 제시한 관할별 합격선을 모두 웃돌았습니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#tbl7">원 논문 표 5–7</a></p>
+            </section>
+
+            <section id="example">
+              <h2>답안에서는 무엇이 달랐나요?</h2>
+              <p>실무형 과제 중 하나는 가상의 프랭클린 법원에 제기된 혼인 취소 사건이었습니다. 한 소문항은 혼인 취소에 어느 관할의 법을 적용할지를 물었습니다. 초기 ChatGPT는 관련 법원칙을 다루면서도 근거 조항을 잘못 짚고 프랭클린 법이 적용된다고 결론 내렸습니다. GPT-4는 문제에 주어진 자료를 바탕으로 <strong>콜럼비아 법이 적용될 가능성이 높다</strong>고 답하고 그 이유를 설명했습니다. 다른 소문항에서는 프랭클린 법원이 혼인을 취소할 권한과 관할 밖 재산을 처분할 권한을 구별했습니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#sec4">원 논문 §4(c)</a></p>
+              <p>반대로 GPT-4도 논술에서 필수적 당사자를 추가했을 때 연방 법원의 주적 상이 관할(diversity jurisdiction)이 유지되는지를 잘못 판단했습니다. 무효로 판단된 유언신탁에서 재산을 어떻게 나눌지 계산하는 데도 어려움을 겪었습니다. 총점만 보면 한 숫자에 들어가는 답안들이지만, 이렇게 나란히 놓고 읽어보면 법리를 찾는 능력, 문제의 요구를 이해하는 능력, 사실관계에 적용하는 능력을 따로 살펴볼 이유가 생깁니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#sec4">원 논문 §4(b)</a> · <a class="source" href="https://github.com/mjbommar/gpt4-passes-the-bar">공개 답안 자료</a></p>
+            </section>
+
+            <section id="percentile">
+              <h2>‘상위 10%’를 어떻게 읽어야 할까요?</h2>
+              <p>여기서 두 가지 계산을 구별해야 합니다. <strong>합격선</strong>을 넘었는지는 환산점수를 관할의 기준과 비교하면 됩니다. <strong>백분위</strong>를 알려면 같은 점수가 어느 응시자 집단에서 어느 위치에 있는지 알아야 합니다. 논문에서 환산한 297점을 2월 시험의 비교표에 대입하면 90백분위, 즉 상위 약 10%에 가까웠습니다. 당시 2월 응시자에는 재응시자가 많이 포함돼 있었습니다. 정식 출판본에서 저자들도 비교하는 지역과 시험 시기에 따라 68~90백분위 범위로 보는 편이 낫다고 적었습니다. <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#fn5">원 논문 각주 5</a></p>
+              <p>후속 연구에서 Eric Martínez는 7월 시험 자료로 비교하면 <strong>약 68백분위</strong>, 7월 첫 응시자만 놓고 추정하면 <strong>약 62백분위</strong>라고 분석했습니다. 후속 연구가 사용한 GPT-4 총점은 당시 보고된 298점입니다. 연구진의 297점과 거의 같은 점수에서도, 누구와 비교하는지에 따라 위치가 달라진다는 점이 중요합니다. <a class="source" href="https://link.springer.com/article/10.1007/s10506-024-09396-9">Martínez의 재평가 §2–3</a></p>
+              <p>Martínez는 객관식 환산점수 158점을 재현했습니다. 서술형에서는 공개 우수 답안을 참고한 연구진의 채점이 공식 시험의 세부 채점 기준과 채점자 보정 절차를 그대로 재현하지 않았다는 점을 지적했습니다. 원 논문 저자들도 공식 채점 절차를 같은 방식으로 수행할 수 없었다고 밝혔습니다. 그래서 논문의 297점은 <strong>연구진이 모의 조건에서 산출한 시험 점수</strong>로 읽는 것이 정확합니다. <a class="source" href="https://link.springer.com/article/10.1007/s10506-024-09396-9">Martínez의 재평가 §4</a> · <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10894685/#sec4">원 논문 §4(b), (d)</a></p>
+            </section>
+
+            <section id="legacy">
+              <h2>이 논문에서 이어진 질문</h2>
+              <p>지금 이 논문을 읽는 재미는 297점이라는 숫자에서 그다음 연구 질문이 보인다는 데 있습니다. 같은 합격 점수 안에 높은 객관식 정답률, 주어진 자료를 활용한 준거법 분석, 민사소송법의 오답이 함께 있었습니다. 그렇다면 모델이 잘하는 법률 추론과 어려워하는 법률 추론을 과제별로 살펴볼 수 있지 않을까요?</p>
+              <p>다음으로 읽을 <cite lang="en">LegalBench</cite>는 이 질문을 162개 과제로 구체화합니다. 두 논문을 이어 읽으면, LLM 시대 초기에 던졌던 ‘변호사시험을 통과할 수 있을까?’라는 질문이 ‘어떤 법률 추론을, 어떤 조건에서, 얼마나 잘할까?’로 넓어지는 과정을 볼 수 있습니다. <a class="source" href="https://arxiv.org/abs/2308.11462">다음에 읽을 논문 · LegalBench</a></p>
+            </section>
+
+            <section class="references" id="references">
+              <h2>참고 문헌</h2>
+              <ol>
+                <li>Daniel Martin Katz, Michael James Bommarito, Shang Gao, Pablo Arredondo. <a href="https://doi.org/10.1098/rsta.2023.0254" lang="en">GPT-4 Passes the Bar Exam</a>. <cite lang="en">Philosophical Transactions of the Royal Society A</cite> 382, 20230254 (2024).</li>
+                <li>Michael Bommarito II, Daniel Martin Katz. <a href="https://arxiv.org/abs/2212.14402" lang="en">GPT Takes the Bar Exam</a>. arXiv:2212.14402 (2022).</li>
+                <li>Eric Martínez. <a href="https://doi.org/10.1007/s10506-024-09396-9" lang="en">Re-evaluating GPT-4’s Bar Exam Performance</a>. <cite lang="en">Artificial Intelligence and Law</cite> (2024년 온라인 공개).</li>
+                <li>Neel Guha 외. <a href="https://arxiv.org/abs/2308.11462" lang="en">LegalBench: A Collaboratively Built Benchmark for Measuring Legal Reasoning in Large Language Models</a>. NeurIPS (2023).</li>
+              </ol>
+            </section>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>Legal AI 연구 노트</span>
+      <a href="#top">맨 위로 <span aria-hidden="true">↑</span></a>
+    </footer>
+  </body>
+</html>
