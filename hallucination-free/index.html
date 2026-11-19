@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="상용 법률 검색 도구 세 가지에 202개 질문을 던진 실험입니다. 판례 링크가 실제로 열리는 것과 그 판례가 답변의 주장을 뒷받침하는 것은 어떻게 다를까요?">
+    <meta name="theme-color" content="#f8f6f1">
+    <title>실제 판례를 인용하면 법률 AI의 답을 믿을 수 있을까요? | Legal AI 연구 노트</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#article">본문으로 건너뛰기</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="site-name" href="../" aria-label="Legal AI 연구 노트 홈">Legal AI <span>연구 노트</span></a>
+        <nav class="header-nav" aria-label="사이트 메뉴">
+          <a class="header-link" href="../#series">연재 목차</a>
+          <a class="header-link" href="#references">참고 문헌 <span aria-hidden="true">↘</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <article id="article" aria-labelledby="article-title" tabindex="-1">
+        <header class="article-header shell">
+          <p class="series">LLM 시대의 Legal AI <span aria-hidden="true">/</span> 네 번째 글</p>
+          <h1 id="article-title">실제 판례를 인용하면 법률 AI의 답을 믿을 수 있을까요?</h1>
+          <p class="dek">상용 법률 검색 도구 세 가지에 202개 질문을 던진 실험입니다. 판례 링크가 실제로 열리는 것과 그 판례가 답변의 주장을 뒷받침하는 것은 어떻게 다를까요?</p>
+          <div class="paper-meta">
+            <cite lang="en">Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools</cite>
+            <span>Varun Magesh 외</span>
+            <span>2024년 공개 · 2025년 출판</span>
+          </div>
+        </header>
+
+        <div class="shell article-layout">
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 id="toc-title">목차</h2>
+            <ol>
+              <li><a href="#question">법률 데이터베이스를 붙이면 무엇이 달라질까요?</a></li>
+              <li><a href="#rubric">맞는 답과 근거 있는 답은 어떻게 구별했나요?</a></li>
+              <li><a href="#experiment">무엇을 물었고, 누가 채점했나요?</a></li>
+              <li><a href="#results">환각률이 낮으면 더 자주 맞혔을까요?</a></li>
+              <li><a href="#scope">제품 비교에서 RAG의 효과를 어디까지 알 수 있을까요?</a></li>
+            </ol>
+          </nav>
+
+          <div class="article-body">
+            <section id="question">
+              <h2>법률 데이터베이스를 붙이면 무엇이 달라질까요?</h2>
+              <p>앞에서 읽은 <cite lang="en">Large Legal Fictions</cite>는 범용 언어모델에 연방법원 판례를 직접 물었습니다. 이번에는 질문에 답하기 전에 자체 법률 데이터베이스를 검색하는 상용 제품을 평가했습니다. 이런 방식이 <strong>검색증강생성</strong>(Retrieval-Augmented Generation, RAG)입니다. 검색 시스템이 질문과 관련된 자료를 가져오고, 언어모델이 그 자료와 질문을 함께 읽어 답을 씁니다. 판결 연도를 조회하는 간단한 질문이라면, 훈련 과정에서 접한 정보를 떠올리는 일과 데이터베이스의 사건 정보를 읽는 일의 차이가 큽니다. <a class="source" href="../large-legal-fictions/">앞 글 · Large Legal Fictions</a> · <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §2–3</a></p>
+              <p>다만 검색 결과에 관련 있어 보이는 판결이 떠도, 그 판결이 해당 관할과 시점에 적용될지는 별개의 문제입니다. 본문 어디엔가 비슷한 문장이 있다는 이유로 과거의 법리를 현재 법으로 인용할 수도 있습니다. Magesh 외는 ‘환각이 없다’는 제품 설명을 검토하려면 <strong>답이 맞는지와 그 답을 제시된 출처로 입증할 수 있는지</strong>를 각각 물어야 한다고 봤습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §3–4</a></p>
+            </section>
+
+            <section id="rubric">
+              <h2>맞는 답과 근거 있는 답은 어떻게 구별했나요?</h2>
+              <p>연구진은 먼저 답변에 틀린 사실 진술이 있는지 봤습니다. 사실관계가 맞는 답변에서는 주요 주장에 근거를 달았는지, 그리고 그 근거가 해당 주장을 실제로 지지하는지 확인했습니다. 이때 <strong>인용한 문서의 존재 여부</strong>와 <strong>그 문서가 그 주장에 적합한지</strong>가 갈립니다. 관할이 다른 판례를 해당 관할의 지배적 법리인 것처럼 제시하면, 원문이 존재해도 잘못된 근거입니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §4.1–4.3</a></p>
+              <table class="exam-table">
+                <caption>연구진이 응답을 분류한 기준</caption>
+                <thead><tr><th scope="col">분류</th><th scope="col">어떤 응답인가요?</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">정확</th><td>내용이 맞고, 핵심 주장을 타당한 출처가 뒷받침합니다.</td></tr>
+                  <tr><th scope="row">불완전</th><td>답변을 회피했거나, 내용은 맞지만 핵심 주장에 출처가 없습니다.</td></tr>
+                  <tr><th scope="row">환각</th><td>내용에 틀린 진술이 있거나, 인용한 출처가 주장과 맞지 않습니다.</td></tr>
+                </tbody>
+              </table>
+              <p>논문이 소개한 사례에서는 실제 판결인 <cite lang="en">Planned Parenthood v. Reynolds</cite>가 인용됐습니다. 답변은 그 판결이 과거의 <cite lang="en">Planned Parenthood v. Casey</cite>를 설명한 부분에 기대었는데, 정작 <cite lang="en">Casey</cite>는 뒤에 연방대법원에서 번복됐습니다. 판결 링크만 누르면 출처는 확인됩니다. 그 답변을 검증하려면 인용된 판결이 어떤 맥락에서 <cite lang="en">Casey</cite>를 언급했고 그 법리가 이후 어떻게 바뀌었는지까지 읽어야 합니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 그림 2, §4.3</a></p>
+            </section>
+
+            <section id="experiment">
+              <h2>무엇을 물었고, 누가 채점했나요?</h2>
+              <p>연구진은 Lexis+ AI, Westlaw AI-Assisted Research, Ask Practical Law AI를 범용 GPT-4와 비교했습니다. 질문은 총 202개였습니다. 일반 법률 조사 80개, 관할이나 시점이 중요한 질문 70개, 틀린 전제를 깐 질문 22개, 판결의 작성자처럼 확인 가능한 사실을 묻는 질문 30개였습니다. 질문을 사전 등록한 뒤 2024년 3~5월 제품 화면에서 실험했고, 법률 지식을 갖춘 평가자가 응답과 인용 자료를 읽고 채점했습니다. 별도의 평가자가 뽑아서 다시 채점한 응답 48건에서 최종 분류 일치율은 85.4%였습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §5, 표 2</a></p>
+              <p>앞선 두 연구가 여기에 실제로 들어와 있습니다. <cite lang="en">LegalBench</cite>의 Rule QA 과제에서 <strong>질문 20개를 그대로 가져왔습니다</strong>. Dahl 외의 연구에서는 판례 사실을 확인하는 질문과 사용자의 틀린 전제를 점검하는 실험을 이어받았습니다. 그리고 앞 연구가 주로 사실과 맞는지를 봤다면, 이 논문의 배점표에는 답변과 인용 출처의 관계가 추가됐습니다. <a class="source" href="../legalbench/">LegalBench 해설</a> · <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §4–5</a></p>
+            </section>
+
+            <section id="results">
+              <h2>환각률이 낮으면 더 자주 맞혔을까요?</h2>
+              <p>전체 질문을 분모로 계산한 환각률은 Lexis+ AI와 Ask Practical Law AI가 각각 <strong>17%</strong>, Westlaw AI-Assisted Research가 <strong>33%</strong>였습니다. 같은 실험에서 범용 GPT-4는 <strong>43%</strong>였습니다. 이 실험에서 세 상용 도구 모두 환각으로 분류된 답변 비율이 GPT-4보다 낮았습니다. 다만 논문의 ‘정확’ 분류까지 보면, 동일한 17%가 서로 다른 모습을 가리고 있었습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 그림 4, 부록 표 C1</a></p>
+              <table class="exam-table results-table">
+                <caption>2024년 실험에서의 상용 도구 응답 비율</caption>
+                <thead><tr><th scope="col">도구</th><th scope="col">정확</th><th scope="col">환각</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Lexis+ AI</th><td>65%</td><td>17%</td></tr>
+                  <tr><th scope="row">Westlaw AI-Assisted Research</th><td>41%</td><td>33%</td></tr>
+                  <tr><th scope="row">Ask Practical Law AI</th><td>19%</td><td>17%</td></tr>
+                </tbody>
+              </table>
+              <p>Lexis+ AI는 맞고 근거가 있는 답을 낸 비율이 65%였고, Ask Practical Law AI는 19%였습니다. 전체 질문 중 환각이 아닌 나머지에는 거부하거나 근거를 달지 않은 답도 들어 있기 때문입니다. 저자들이 직접 응답한 경우만 따로 떼어 환각률을 비교한 이유입니다. 새 연구에서 환각률을 볼 때도 <strong>분모가 전체 질문인지, 답변을 받은 질문인지</strong>를 확인하면 같은 숫자를 다르게 읽는 일을 피할 수 있습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §6.1, 그림 4</a></p>
+            </section>
+
+            <section id="scope">
+              <h2>제품 비교에서 RAG의 효과를 어디까지 알 수 있을까요?</h2>
+              <p>상용 제품마다 검색 대상 자료, 답변을 거부하는 기준, 답변의 길이와 시스템 구성이 달랐습니다. 구체적으로 어느 텍스트 조각이 모델에 전달됐는지도 연구진이 전부 확인할 수는 없었습니다. 이 결과는 2024년 당시 버전들이 이 질문 묶음에서 보인 응답의 비교입니다. 동일한 모델에서 검색 기능만 켜고 끈 대조 실험은 아니므로 RAG만의 효과를 분리해 읽기에는 제약이 있습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §6.3, §7</a></p>
+              <p>결과표를 읽고 어떤 도구가 더 정확했는지 알았다면, 다음에는 <strong>근거를 못 찾은 것인지, 찾고도 잘못 쓴 것인지</strong>가 궁금해집니다. 다음 글의 <cite lang="en">LegalBench-RAG</cite>는 그중 검색 단계만 따로 보는 연구입니다. <a class="source" href="../legalbench-rag/">다음 글 · LegalBench-RAG</a></p>
+            </section>
+
+            <section class="references" id="references">
+              <h2>참고 문헌</h2>
+              <ol>
+              <li>Varun Magesh, Faiz Surani, Matthew Dahl, Mirac Suzgun, Christopher D. Manning, Daniel E. Ho. <a href="https://doi.org/10.1111/jels.12413" lang="en">Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools</a>. <cite lang="en">Journal of Empirical Legal Studies</cite> 22(2), 216–242 (2025).</li>
+              <li><a href="https://arxiv.org/abs/2405.20362">2024년 사전 공개본</a> · <a href="../large-legal-fictions/">선행 연구 · Large Legal Fictions 해설</a></li>
+              </ol>
+            </section>
+            <nav class="article-pager" aria-label="연재 글 이동">
+              <a rel="prev" href="../large-legal-fictions/"><span>이전 글</span>Large Legal Fictions</a>
+              <a rel="next" href="../legalbench-rag/"><span>다음 글</span>LegalBench-RAG</a>
+            </nav>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>Legal AI 연구 노트</span>
+      <a href="#top">맨 위로 <span aria-hidden="true">↑</span></a>
+    </footer>
+  </body>
+</html>
