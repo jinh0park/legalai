@@ -6,7 +6,7 @@
     <meta name="description" content="변호사시험 총점으로는 알기 어려웠던 것을 162개 과제로 들여다봅니다. 쟁점을 찾는 능력, 어떤 법리가 적용되는지 아는 능력, 결론을 설명하는 능력은 어떤 차이가 있을까요?">
     <meta name="theme-color" content="#f8f6f1">
     <title>LegalBench는 법률 추론을 어떻게 나눠서 평가했을까요? | Legal AI 연구 노트</title>
-    <link rel="stylesheet" href="../styles.css?v=20261119">
+    <link rel="stylesheet" href="../styles.css?v=20261119-hub">
   </head>
   <body id="top">
     <a class="skip-link" href="#article">본문으로 건너뛰기</a>
@@ -14,8 +14,9 @@
       <div class="shell header-inner">
         <a class="site-name" href="../" aria-label="Legal AI 연구 노트 홈">Legal AI <span>연구 노트</span></a>
         <nav class="header-nav" aria-label="사이트 메뉴">
-          <a class="header-link" href="../#series">연재 목차</a>
-          <a class="header-link" href="#references">참고 문헌 <span aria-hidden="true">↘</span></a>
+          <a class="header-link" href="../papers/" aria-current="location" lang="en">Papers</a>
+          <a class="header-link" href="../datasets/" lang="en">Datasets</a>
+          <a class="header-link" href="../insights/" lang="en">Insights</a>
         </nav>
       </div>
     </header>
@@ -47,7 +48,7 @@
           <div class="article-body">
             <section id="question">
               <h2>시험 성적 다음에는 무엇을 물어야 할까요?</h2>
-              <p>앞 글의 GPT-4 연구는 범용 언어모델에 미국 변호사시험의 세 영역을 모두 풀게 했습니다. 합격선과 비교할 수 있는 숫자가 생겼지만, 계약 조항을 해석하는 능력과 판결문의 논증 구조를 읽는 능력을 그 숫자에서 따로 꺼내 보기는 어렵습니다. LegalBench 저자들은 서론에서 Katz 외의 시험 연구를 직접 인용하면서, 자격시험의 문제가 LLM을 실제로 쓰게 될 과제를 충분히 대표하는지 물었습니다. <a class="source" href="../">앞 글 · GPT-4와 변호사시험</a> · <a class="source" href="https://arxiv.org/html/2308.11462">원 논문 §1</a></p>
+              <p>앞 글의 GPT-4 연구는 범용 언어모델에 미국 변호사시험의 세 영역을 모두 풀게 했습니다. 합격선과 비교할 수 있는 숫자가 생겼지만, 계약 조항을 해석하는 능력과 판결문의 논증 구조를 읽는 능력을 그 숫자에서 따로 꺼내 보기는 어렵습니다. LegalBench 저자들은 서론에서 Katz 외의 시험 연구를 직접 인용하면서, 자격시험의 문제가 LLM을 실제로 쓰게 될 과제를 충분히 대표하는지 물었습니다. <a class="source" href="../gpt-4-bar-exam/">앞 글 · GPT-4와 변호사시험</a> · <a class="source" href="https://arxiv.org/html/2308.11462">원 논문 §1</a></p>
               <p>Guha 외는 비교할 과제 자체를 새로 설계했습니다. 법률가와 컴퓨터과학 연구자가 36개 출처에서 영어 과제 162개를 모았습니다. 이미 있던 계약서·개인정보 처리방침 데이터 등을 모델에 곧바로 제시할 수 있도록 재구성하고, 법률 전문가가 중요하다고 본 과제를 직접 만들기도 했습니다. 여기서 ‘162개’는 문제 162문항을 뜻하는 숫자가 아닙니다. 예를 들어 계약서에 감사권 조항이 있는지 판별하는 일이 하나의 과제이고, 그 과제 안에 여러 평가 문항이 들어 있습니다. <a class="source" href="https://arxiv.org/html/2308.11462">원 논문 §1, §4</a></p>
             </section>
 
@@ -82,6 +83,10 @@
               <p>이 과제들은 뒤의 연구에 실제로 재사용됩니다. <cite lang="en">Hallucination-Free?</cite>는 규칙 회상용 Rule QA에서 20개 질문을 가져왔습니다. <cite lang="en">LegalBench-RAG</cite>는 일부 과제가 사용한 계약·개인정보 데이터의 원문으로 거슬러 올라가, 이번에는 답변에 필요한 문장을 찾는지를 평가했습니다. 두 연구가 LegalBench를 이어받은 방식이 서로 다르다는 점이 흥미롭습니다. <a class="source" href="../hallucination-free/">Hallucination-Free?</a> · <a class="source" href="../legalbench-rag/">LegalBench-RAG</a></p>
             </section>
 
+            <aside class="article-related">
+              <p>이 연구의 입력과 정답이 궁금하다면 <a href="../datasets/#legalbench">데이터 예시 보기</a></p>
+            </aside>
+
             <section class="references" id="references">
               <h2>참고 문헌</h2>
               <ol>
@@ -90,7 +95,7 @@
               </ol>
             </section>
             <nav class="article-pager" aria-label="연재 글 이동">
-              <a rel="prev" href="../"><span>이전 글</span>GPT-4와 변호사시험</a>
+              <a rel="prev" href="../gpt-4-bar-exam/"><span>이전 글</span>GPT-4와 변호사시험</a>
               <a rel="next" href="../large-legal-fictions/"><span>다음 글</span>Large Legal Fictions</a>
             </nav>
           </div>

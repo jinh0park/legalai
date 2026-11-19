@@ -6,7 +6,7 @@
     <meta name="description" content="관련 계약서를 찾았다고 해도, 답을 뒷받침하는 조항을 놓칠 수 있습니다. 정답의 단위를 문서에서 원문의 정확한 구간으로 바꾼 연구를 읽습니다.">
     <meta name="theme-color" content="#f8f6f1">
     <title>LegalBench-RAG는 필요한 근거를 찾았는지 어떻게 평가할까요? | Legal AI 연구 노트</title>
-    <link rel="stylesheet" href="../styles.css?v=20261119">
+    <link rel="stylesheet" href="../styles.css?v=20261119-hub">
   </head>
   <body id="top">
     <a class="skip-link" href="#article">본문으로 건너뛰기</a>
@@ -14,8 +14,9 @@
       <div class="shell header-inner">
         <a class="site-name" href="../" aria-label="Legal AI 연구 노트 홈">Legal AI <span>연구 노트</span></a>
         <nav class="header-nav" aria-label="사이트 메뉴">
-          <a class="header-link" href="../#series">연재 목차</a>
-          <a class="header-link" href="#references">참고 문헌 <span aria-hidden="true">↘</span></a>
+          <a class="header-link" href="../papers/" aria-current="location" lang="en">Papers</a>
+          <a class="header-link" href="../datasets/" lang="en">Datasets</a>
+          <a class="header-link" href="../insights/" lang="en">Insights</a>
         </nav>
       </div>
     </header>
@@ -104,6 +105,10 @@
               <p>모든 질문의 기준 근거는 한 문서 안에 있습니다. 이 설계 덕분에 문서를 찾아 그 안의 구절을 얼마나 정밀하게 가져왔는지 보기 좋습니다. 동시에 여러 판례에서 결론과 예외를 모으거나, 이후 판결에서 선례가 번복됐는지 추적하는 조사에는 다른 데이터와 채점 기준이 필요합니다. 이 논문은 근거를 가져온 뒤 모델이 그것을 알맞게 해석하고 인용했는지도 따로 채점하지 않습니다. <a class="source" href="https://arxiv.org/html/2408.10343v1">원 논문 §3.5</a></p>
               <p>새 RAG 논문을 보실 때는 정답을 무엇으로 정의했는지부터 확인해 보세요. <strong>문서 한 건, 그 안의 근거 구절, 여러 문서의 결합, 최종 답변</strong>은 각각 다른 평가 단위입니다. LegalBench-RAG가 남긴 기준점은 그중 근거 구절을 정확히 찾는 단계입니다.</p>
             </section>
+
+            <aside class="article-related">
+              <p>이 연구의 입력과 정답이 궁금하다면 <a href="../datasets/#legalbench-rag">데이터 예시 보기</a></p>
+            </aside>
 
             <section class="references" id="references">
               <h2>참고 문헌</h2>

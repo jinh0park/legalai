@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="기업이 공개한 법률 AI 기술 글과 실무 사례에 대한 한국어 읽기 노트.">
+    <meta name="theme-color" content="#f8f6f1">
+    <title>Insights | Legal AI 연구 노트</title>
+    <link rel="stylesheet" href="../styles.css?v=20261119-hub">
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="site-name" href="../" aria-label="Legal AI 연구 노트 홈">Legal AI <span>연구 노트</span></a>
+        <nav class="header-nav" aria-label="사이트 메뉴">
+          <a class="header-link" href="../papers/" lang="en">Papers</a>
+          <a class="header-link" href="../datasets/" lang="en">Datasets</a>
+          <a class="header-link" href="./" aria-current="page" lang="en">Insights</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell" id="main">
+      <header class="hub-intro section-intro">
+        <h1 lang="en">Insights</h1>
+        <p class="dek">기업이 공개한 기술 글과 실무 사례를 읽고, 연구에서 던진 질문이 제품과 현장에서 어떻게 이어지는지 살펴봅니다.</p>
+      </header>
+
+      <div class="catalog feature-list">
+        <article class="feature-entry" id="harvey">
+          <header>
+            <p class="catalog-meta">Harvey · 기술 블로그 · <time datetime="2026-09-02">2026.09.02.</time></p>
+            <h2>Harvey는 계약서 검토를 어떻게 나눠서 처리할까요?</h2>
+          </header>
+          <p>Harvey는 계약서 검토 지침의 각 규칙을 여러 에이전트에 맡긴 뒤, 수정 제안이 충돌하면 총괄 에이전트가 조정하도록 설계했습니다. 자체 평가에서 위험 분류 점수는 59%에서 77%로, 수정 제안 점수는 53%에서 87%로 올랐고, 평균 처리 시간은 2.6분에서 3.8분으로 늘었다고 보고했습니다.</p>
+          <p><strong>읽을 때 볼 점.</strong> 연구에서는 보통 답이 맞는지를 묻습니다. 이 사례에서는 수정안이 적절한 위치에 들어갔는지, 다른 조항과 충돌하지 않는지, 처리 시간이 어느 정도인지까지 살펴볼 수 있습니다.</p>
+          <ul class="entry-links">
+            <li><a href="https://www.harvey.ai/blog/rebuilding-playbook-review-as-a-multi-agent-system">Harvey 원문</a></li>
+            <li><a href="../legalagentbench/">관련 논문 · LegalAgentBench</a></li>
+          </ul>
+        </article>
+
+        <article class="feature-entry" id="legora">
+          <header>
+            <p class="catalog-meta">Legora · 기술 블로그 · <time datetime="2026-09-11">2026.09.11.</time></p>
+            <h2>법률 에이전트는 사건 자료에서 어떻게 근거를 찾을까요?</h2>
+          </header>
+          <p>Legora는 하나의 사건에 연결된 자료 안에서 키워드 검색과 의미 검색을 함께 씁니다. 회사는 검색 인덱스를 사건별로 나누고, 한동안 조회되지 않는 사건의 인덱스를 필요할 때 불러오는 구조로 바꾼 뒤 검색 시스템의 p99 지연 시간이 20초에서 2초로 줄었다고 보고했습니다.</p>
+          <p><strong>읽을 때 볼 점.</strong> 제품에서는 검색 속도도 중요합니다. 필요한 조항을 빠뜨리는지까지 보려면 질문별 정답 근거가 있는 LegalBench-RAG 같은 데이터에서 검색 품질을 별도로 봐야 합니다.</p>
+          <ul class="entry-links">
+            <li><a href="https://legora.com/engineering/scaling-search-for-legal-ai">Legora 원문</a></li>
+            <li><a href="https://legora.com/engineering/building-scalable-evals-infrastructure-for-legal-agents">Legora의 평가 인프라</a></li>
+            <li><a href="../datasets/#legalbench-rag">관련 데이터 · LegalBench-RAG</a></li>
+          </ul>
+        </article>
+
+        <article class="feature-entry" id="lexisnexis">
+          <header>
+            <p class="catalog-meta">LexisNexis UK · 고객 사례 · <time datetime="2026-09-25">2026.09.25.</time></p>
+            <h2>법률 AI의 답변을 받은 뒤 변호사는 무엇을 확인할까요?</h2>
+          </header>
+          <p>LexisNexis는 자사 제품을 사용하는 영국 법률기관 여섯 곳의 사례를 소개합니다. 한 사례에서 변호사는 심리 도중 AI로 관련 판례를 찾고, 원문을 직접 읽어 사건의 사실관계와 맞는지 검토한 뒤 변론에 어떻게 쓸지 판단했습니다.</p>
+          <p><strong>읽을 때 볼 점.</strong> 이 기업 사례는 답변에서 판례 원문으로 돌아가는 경로가 실무에서 어떻게 쓰이는지 보여줍니다. 인용된 판례가 실제로 답변을 뒷받침하는지를 연구자가 어떻게 판정했는지도 함께 읽을 수 있습니다.</p>
+          <ul class="entry-links">
+            <li><a href="https://www.lexisnexis.co.uk/blog/future-of-law/legal-ai-can-produce-an-answer-what-makes-it-usable">LexisNexis 원문</a></li>
+            <li><a href="../hallucination-free/">관련 논문 · 법률 AI 인용 검증</a></li>
+          </ul>
+        </article>
+
+        <article class="feature-entry" id="thomson-reuters">
+          <header>
+            <p class="catalog-meta">Thomson Reuters · 조사 해설 · <time datetime="2026-11-04">2026.11.04.</time></p>
+            <h2>법원이 AI를 쓰면 어떤 전문성을 지켜야 할까요?</h2>
+          </header>
+          <p>Thomson Reuters는 미국 주 법원 판사와 실무자 116명의 설문과 집단 인터뷰를 바탕으로, 문서 초안 작성과 법률 조사에 AI가 쓰이는 모습을 소개합니다. 응답자들이 꼽은 가장 큰 우려는 AI에 지나치게 의존하면서 전문 역량을 쌓을 기회가 줄어드는 것이었습니다.</p>
+          <p><strong>읽을 때 볼 점.</strong> 이 조사는 응답자들의 사용 경험과 전망을 담았습니다. 도입 사례를 읽을 때는 작업 시간이 얼마나 줄었는지와 오류를 발견하고 판단하는 역량을 어떻게 유지하는지를 함께 물어볼 수 있습니다.</p>
+          <ul class="entry-links">
+            <li><a href="https://legal.thomsonreuters.com/blog/ai-in-the-courts-time-savings-divided-opinions-and-the-risk-of-losing-expertise/">Thomson Reuters 원문</a></li>
+            <li><a href="https://www.thomsonreuters.com/en/institute/topics/ai-in-the-legal-industry">법률 분야 AI 연재</a></li>
+          </ul>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>Legal AI 연구 노트</span>
+      <a href="#top">맨 위로</a>
+    </footer>
+  </body>
+</html>

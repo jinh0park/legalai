@@ -6,7 +6,7 @@
     <meta name="description" content="법률 데이터베이스를 열어 준 뒤, 무엇을 조회할지 모델이 고르게 했습니다. 검색 결과가 다음 검색의 단서가 될 때, 조사는 어디까지 진행될까요?">
     <meta name="theme-color" content="#f8f6f1">
     <title>LegalAgentBench는 법률 에이전트의 조사 과정을 어떻게 평가했을까요? | Legal AI 연구 노트</title>
-    <link rel="stylesheet" href="../styles.css?v=20261119">
+    <link rel="stylesheet" href="../styles.css?v=20261119-hub">
   </head>
   <body id="top">
     <a class="skip-link" href="#article">본문으로 건너뛰기</a>
@@ -14,8 +14,9 @@
       <div class="shell header-inner">
         <a class="site-name" href="../" aria-label="Legal AI 연구 노트 홈">Legal AI <span>연구 노트</span></a>
         <nav class="header-nav" aria-label="사이트 메뉴">
-          <a class="header-link" href="../#series">연재 목차</a>
-          <a class="header-link" href="#references">참고 문헌 <span aria-hidden="true">↘</span></a>
+          <a class="header-link" href="../papers/" aria-current="location" lang="en">Papers</a>
+          <a class="header-link" href="../datasets/" lang="en">Datasets</a>
+          <a class="header-link" href="../insights/" lang="en">Insights</a>
         </nav>
       </div>
     </header>
@@ -102,6 +103,10 @@
               <p>LegalAgentBench를 읽을 때 눈여겨볼 변화는, 질문에 대한 글을 한 번 생성하는 능력과 <strong>조회 결과를 받아 다음 행동을 정하는 능력</strong>을 따로 볼 수 있게 됐다는 점입니다. 연구진은 실패 사례에서 소 제기 시점과 재판 시점을 혼동하거나, 찾은 조문의 적용 범위를 잘못 해석하는 경우도 관찰했습니다. 이런 차이는 조회 단계 수와 문서 작성 성적을 따로 보면 더 잘 드러납니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §4.2–4.3</a></p>
               <p>후속 <cite lang="en">Legal Research Bench</cite>는 이 논문을 도구 사용을 평가한 선행 연구로 직접 인용합니다. 그 연구에서는 미국 법률 조사를 위해 웹과 판례 검색을 열어 주고, 여러 조사 경로 중 어느 것을 택했든 최종 답안이 필수 항목과 출처 검증을 모두 통과하는지 확인합니다. 두 편을 이어 읽으면 법률 에이전트의 <strong>조사가 어디까지 진행됐는지</strong>와 <strong>그 결과로 완결된 답안을 냈는지</strong>가 서로 다른 평가 질문임을 볼 수 있습니다. <a class="source" href="https://arxiv.org/html/2610.00609">후속 연구 §2</a> · <a class="source" href="../legal-research-bench/">다음 글</a></p>
             </section>
+
+            <aside class="article-related">
+              <p>이 연구의 입력과 정답이 궁금하다면 <a href="../datasets/#legalagentbench">데이터 예시 보기</a></p>
+            </aside>
 
             <section class="references" id="references">
               <h2>참고 문헌</h2>

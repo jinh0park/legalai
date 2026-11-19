@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LegalBench, LegalBench-RAG, LegalAgentBench의 실제 공개 예시와 정답을 살펴봅니다.">
+    <meta name="theme-color" content="#f8f6f1">
+    <title>Datasets | Legal AI 연구 노트</title>
+    <link rel="stylesheet" href="../styles.css?v=20261119-hub">
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="site-name" href="../" aria-label="Legal AI 연구 노트 홈">Legal AI <span>연구 노트</span></a>
+        <nav class="header-nav" aria-label="사이트 메뉴">
+          <a class="header-link" href="../papers/" lang="en">Papers</a>
+          <a class="header-link" href="./" aria-current="page" lang="en">Datasets</a>
+          <a class="header-link" href="../insights/" lang="en">Insights</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell" id="main">
+      <header class="hub-intro section-intro">
+        <h1 lang="en">Datasets</h1>
+        <p class="dek">공개 벤치마크의 실제 질문을 읽고, 정답과 채점에 쓰인 필드를 펼쳐 보세요.</p>
+        <nav class="dataset-jump" aria-label="데이터셋 바로가기" lang="en">
+          <a href="#legalbench">LegalBench</a>
+          <a href="#legalbench-rag">LegalBench-RAG</a>
+          <a href="#legalagentbench">LegalAgentBench</a>
+        </nav>
+      </header>
+
+      <div class="catalog feature-list">
+        <article class="feature-entry" id="legalbench">
+          <header>
+            <p class="catalog-meta">법률 추론</p>
+            <h2 lang="en">LegalBench</h2>
+          </header>
+          <p>법률 추론을 여러 과업으로 나눈 벤치마크입니다. 아래 예시에서는 주어진 상황이 전문증거에 해당하는지 분류합니다.</p>
+          <dl class="dataset-meta">
+            <div><dt>이 예시의 관할과 언어</dt><dd>미국 연방 증거법 · 영어</dd></div>
+            <div><dt>라이선스</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <code>hearsay</code> 과업</dd></div>
+          </dl>
+          <section class="sample" aria-labelledby="hearsay-example">
+            <h3 id="hearsay-example">전문증거 분류 · 학습 데이터 0번</h3>
+            <p>주어진 상황에서 제시된 사실은 전문증거에 해당할까요?</p>
+            <blockquote lang="en" cite="https://github.com/HazyResearch/legalbench/blob/b46bf4ffae90524b2b72aaa30e7745fe9db64481/tasks/hearsay/train.tsv#L2">On the issue of whether David is fast, the fact that David set a high school track record.</blockquote>
+            <p class="sample-translation">한국어 풀이 · 데이비드가 빠른지를 판단하기 위해 그가 고등학교 육상 기록을 세웠다는 사실을 제시합니다.</p>
+            <details>
+              <summary>정답과 채점 기준 보기</summary>
+              <p><strong lang="en">No</strong> · 기록을 세운 행위 자체는 무언가를 주장하는 진술이 아닙니다. 이 과업은 전문증거의 예외는 고려하지 않습니다.</p>
+            </details>
+            <details>
+              <summary>원본 TSV 행 보기</summary>
+              <pre><code lang="en">index	answer	text	slice
+0	No	On the issue of whether David is fast, the fact that David set a high school track record.	Non-assertive conduct</code></pre>
+            </details>
+          </section>
+          <ul class="entry-links">
+            <li><a href="https://github.com/HazyResearch/legalbench/blob/b46bf4ffae90524b2b72aaa30e7745fe9db64481/tasks/hearsay/train.tsv#L2">원본 데이터 · Neel Guha</a></li>
+            <li><a href="https://github.com/HazyResearch/legalbench/tree/b46bf4ffae90524b2b72aaa30e7745fe9db64481/tasks/hearsay">과업 설명 및 사용 조건</a></li>
+            <li><a href="../legalbench/">논문 해설</a></li>
+          </ul>
+        </article>
+
+        <article class="feature-entry" id="legalbench-rag">
+          <header>
+            <p class="catalog-meta">문서 근거 검색</p>
+            <h2 lang="en">LegalBench-RAG</h2>
+          </header>
+          <p>질문에 답하는 데 필요한 문서 속 구간을 검색기가 찾아내는지 평가합니다.</p>
+          <dl class="dataset-meta">
+            <div><dt>이 예시의 자료와 언어</dt><dd>PrivacyQA 개인정보 처리방침 · 영어</dd></div>
+            <div><dt>라이선스</dt><dd>코드 MIT · 데이터는 구성 자료별 사용 조건 참조</dd></div>
+          </dl>
+          <section class="sample" aria-labelledby="retrieval-example">
+            <h3 id="retrieval-example">개인정보 처리방침에서 근거 찾기</h3>
+            <blockquote lang="en" cite="https://huggingface.co/datasets/awinml/legalbench-rag/blob/2dee6dd4629a83cdbefc561621c09cd2b0b61157/benchmarks/privacy_qa.json#L2819">Consider "TickTick: To Do List with Reminder, Day Planner"'s privacy policy; is my data shared with others?</blockquote>
+            <p class="sample-translation">한국어 풀이 · TickTick의 개인정보 처리방침에 따르면 내 정보가 다른 사람과 공유되나요?</p>
+            <details>
+              <summary>정답 근거 보기</summary>
+              <p><strong>근거 구간 <code>[1006, 1116]</code></strong> · 처리방침의 해당 구간은 정보가 다른 사람과 공유되지 않고, 아래에 설명된 목적으로만 내부에서 사용된다고 밝힙니다.</p>
+              <p>채점에는 이 문서의 0부터 센 문자 위치가 쓰입니다. 시작 위치 1006은 포함하고 끝 위치 1116은 제외합니다.</p>
+            </details>
+            <details>
+              <summary>원본 JSON에서 주요 필드 보기</summary>
+              <pre><code lang="en">{
+  "query": "Consider \"TickTick: To Do List with Reminder, Day Planner\"'s privacy policy; is my data shared with others?",
+  "snippets": [
+    {
+      "file_path": "privacy_qa/TickTick: To Do List with Reminder, Day Planner.txt",
+      "span": [1006, 1116]
+    }
+  ]
+}</code></pre>
+            </details>
+          </section>
+          <ul class="entry-links">
+            <li><a href="https://huggingface.co/datasets/awinml/legalbench-rag/blob/2dee6dd4629a83cdbefc561621c09cd2b0b61157/benchmarks/privacy_qa.json#L2819">예시 데이터 · 공개 미러</a></li>
+            <li><a href="https://github.com/zeroentropy-ai/legalbenchrag#usage">저자 저장소 · 다운로드 및 사용 조건</a></li>
+            <li><a href="../legalbench-rag/">논문 해설</a></li>
+            <li><a href="../insights/#legora">관련 Insights · Legora의 검색 시스템</a></li>
+          </ul>
+        </article>
+
+        <article class="feature-entry" id="legalagentbench">
+          <header>
+            <p class="catalog-meta">법률 에이전트와 도구 사용</p>
+            <h2 lang="en">LegalAgentBench</h2>
+          </header>
+          <p>법률 에이전트에 조사 과제를 주고, 도구로 찾아낸 정보가 정답과 일치하는지 평가합니다.</p>
+          <dl class="dataset-meta">
+            <div><dt>이 예시의 관할과 언어</dt><dd>중국 · 중국어</dd></div>
+            <div><dt>라이선스</dt><dd>MIT · 논문 부록 A.3 기준</dd></div>
+          </dl>
+          <section class="sample" aria-labelledby="agent-example">
+            <h3 id="agent-example">법원 코드와 행정 등급 조회 · 27번</h3>
+            <blockquote lang="zh-Hans" cite="https://github.com/CSHaitao/LegalAgentBench/blob/ec14d8ab1fc439bfd99cbefba08d8e27dafca534/data/dataset.json#L320-L331">请帮我确认一下安国市人民法院的代字和行政级别是多少？</blockquote>
+            <p class="sample-translation">한국어 풀이 · 안궈시 인민법원의 법원 코드와 행정 등급은 무엇인가요?</p>
+            <details>
+              <summary>정답과 도구 경로 보기</summary>
+              <p><strong><span lang="zh-Hans">冀0683</span> · 구·현급</strong> · 원본의 채점 키는 <span lang="zh-Hans">冀0683</span>과 <span lang="zh-Hans">区县级</span>이고, 예시 도구 경로는 <code>get_court_code</code>입니다.</p>
+            </details>
+            <details>
+              <summary>원본 JSON에서 주요 필드 보기</summary>
+              <pre><code>{
+  "id": 27,
+  "question": "<span lang="zh-Hans">请帮我确认一下安国市人民法院的代字和行政级别是多少？</span>",
+  "answer": "<span lang="zh-Hans">安国市人民法院的法院代字是冀0683，行政级别是区县级。</span>",
+  "key": ["<span lang="zh-Hans">冀0683</span>", "<span lang="zh-Hans">区县级</span>"],
+  "key_middle": [],
+  "way": "get_court_code"
+}</code></pre>
+            </details>
+          </section>
+          <ul class="entry-links">
+            <li><a href="https://github.com/CSHaitao/LegalAgentBench/blob/ec14d8ab1fc439bfd99cbefba08d8e27dafca534/data/dataset.json#L320-L331">원본 데이터</a></li>
+            <li><a href="https://aclanthology.org/2025.acl-long.116.pdf#page=11">논문 부록 · 사용 조건</a></li>
+            <li><a href="../legalagentbench/">논문 해설</a></li>
+          </ul>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>Legal AI 연구 노트</span>
+      <a href="#top">맨 위로</a>
+    </footer>
+  </body>
+</html>
