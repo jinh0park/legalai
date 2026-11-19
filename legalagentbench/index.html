@@ -39,7 +39,7 @@
             <ol>
               <li><a href="#question">한 번 검색해서 답하기 어려운 질문</a></li>
               <li><a href="#environment">중국 법률 업무를 어떤 환경에 담았나요?</a></li>
-              <li><a href="#scoring">중간 단서를 찾았다는 건 어떻게 알았을까요?</a></li>
+              <li><a href="#scoring">답변에 담긴 중간 단서까지 어떻게 셌나요?</a></li>
               <li><a href="#results">같은 GPT-4o도 조사 방법에 따라 달랐습니다</a></li>
               <li><a href="#scope">다음 연구는 조사 결과를 어떻게 판정했나요?</a></li>
             </ol>
@@ -49,7 +49,25 @@
             <section id="question">
               <h2>한 번 검색해서 답하기 어려운 질문</h2>
               <p>베이징 제1중급인민법원이 있는 구에 어떤 법원들이 있는지 궁금하다고 해보겠습니다. 질문을 읽자마자 법원 목록을 내놓으려면, 우선 그 법원이 어느 구에 있는지 알아야 합니다. 첫 번째 조회로 스징산구라는 단서를 얻고 나서야 그 구의 법원 목록을 찾을 수 있습니다. Li 외가 논문 첫머리에 든 이 예시에는 다음 조회의 입력이 앞 조회의 결과에 달려 있다는 특징이 있습니다. 연구진은 이런 연결을 밟는 각 단계를 <em>홉</em>(hop)이라고 부릅니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §3.1, 그림 1</a></p>
-              <p><cite lang="en">LegalAgentBench</cite>에서 모델은 미리 찾아 둔 발췌문을 받아 읽는 데서 출발하지 않습니다. 주어진 목록에서 어떤 도구를 어떤 입력으로 호출할지 정하고, 반환된 내용을 활용해 다음 행동을 선택합니다. 이때 평가하는 에이전트는 <strong>언어모델과 도구를 쓰는 절차를 결합한 시스템</strong>입니다. 같은 모델을 쓰더라도 조사 절차를 바꾸면 결과가 달라질 수 있습니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §3.1, §4.1</a></p>
+              <figure class="score-figure paper-figure">
+                <h3>법원 한 곳의 주소에서 두 법원의 이름까지</h3>
+                <ol class="flow-steps">
+                  <li>
+                    <strong>법원 정보 조회</strong>
+                    <span>베이징 제1중급인민법원의 주소를 찾습니다.</span>
+                  </li>
+                  <li class="flow-focus">
+                    <strong>스징산구 <small>중간 핵심어</small></strong>
+                    <span>주소에서 확인한 구 이름으로 그 구의 법원 목록을 조회합니다.</span>
+                  </li>
+                  <li>
+                    <strong>법원 두 곳 <small>최종 핵심어</small></strong>
+                    <span>베이징 제1중급인민법원과 베이징 스징산구 인민법원이 나옵니다.</span>
+                  </li>
+                </ol>
+                <figcaption><a href="https://aclanthology.org/2025.acl-long.116.pdf#page=3">원 논문 그림 1</a>의 예시를 조회 순서에 맞춰 재구성했습니다.</figcaption>
+              </figure>
+              <p><cite lang="en">LegalAgentBench</cite>에서 모델은 미리 찾아 둔 발췌문을 받아 읽는 데서 출발하지 않습니다. 주어진 목록에서 어느 도구에 어떤 정보를 넣어 조회할지 정하고, 그 결과를 보고 다음 행동을 선택합니다. 이때 평가하는 에이전트는 <strong>언어모델과 도구를 쓰는 절차를 결합한 시스템</strong>입니다. 같은 모델을 쓰더라도 조사 절차를 바꾸면 결과가 달라질 수 있습니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §3.1, §4.1</a></p>
             </section>
 
             <section id="environment">
@@ -59,16 +77,16 @@
             </section>
 
             <section id="scoring">
-              <h2>중간 단서를 찾았다는 건 어떻게 알았을까요?</h2>
-              <p>첫 예시에서 최종 답안의 핵심어는 두 법원의 이름이고, 중간 단계의 핵심어는 스징산구입니다. 논문의 <strong>성공률</strong>(success rate)은 답안에 최종 핵심어가 얼마나 들어 있는지 계산한 값입니다. <strong>진행률</strong>(progress rate)은 중간 핵심어와 최종 핵심어를 합쳐 답안에 얼마나 포함됐는지 봅니다. 예를 들어 두 법원 중 하나만 답했다면, 최종 핵심어 기준으로 한 문항에서 절반을 맞힌 셈입니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §3.3.3, §4.1.2, 부록 E.2</a></p>
-              <p>중간 단서를 표시해 두면 답안이 조사의 어느 부분을 담고 있는지 보기가 쉬워집니다. 다만 핵심어가 적혀 있다는 사실만으로 그 에이전트가 실제로 올바른 자료를 조회했는지, 법적 결론을 제대로 설명했는지까지 알 수는 없습니다. 같은 법원 이름을 적어 놓고도 그 법원이 관할한다는 말과 관할하지 않는다는 말은 다르기 때문입니다. 이 점은 다음 글의 <cite lang="en">Legal Research Bench</cite>와 채점 방식을 비교할 때 중요합니다. <a class="source" href="../legal-research-bench/">다음 글 · Legal Research Bench</a></p>
+              <h2>답변에 담긴 중간 단서까지 어떻게 셌나요?</h2>
+              <p>첫 예시에서 최종 답안의 핵심어는 두 법원의 이름이고, 중간 단계의 핵심어는 스징산구입니다. 논문의 <strong>성공률</strong>(success rate)은 답안에 최종 핵심어가 얼마나 들어 있는지 계산한 값입니다. <strong>진행률</strong>(progress rate)은 중간 핵심어와 최종 핵심어를 합쳐 답안에 얼마나 포함됐는지 봅니다. 가령 답안에 법원 이름 두 개 중 하나와 ‘스징산구’가 들어 있으면, 이 문항의 성공률은 1/2, 진행률은 2/3입니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §3.3.3, §4.1.2, 부록 E.2</a></p>
+              <p>채점할 때 대조하는 것은 <strong>최종 답안의 문구</strong>입니다. 어떤 자료를 실제로 조회했는지 보여주는 도구 사용 기록은 이 점수에 들어가지 않습니다. 핵심어를 적고도 법적 결론을 잘못 설명할 수 있습니다. 같은 법원 이름을 적어 놓고도 그 법원이 관할한다는 말과 관할하지 않는다는 말은 다르기 때문입니다. 이 점은 다음 글의 <cite lang="en">Legal Research Bench</cite>와 채점 방식을 비교할 때 중요합니다. <a class="source" href="../legal-research-bench/">다음 글 · Legal Research Bench</a></p>
             </section>
 
             <section id="results">
               <h2>같은 GPT-4o도 조사 방법에 따라 달랐습니다</h2>
-              <p>연구진은 당시 모델 8개에 세 가지 방법을 적용했습니다. <em>Plan-and-Solve</em>는 계획을 먼저 세우고 단계별로 수행합니다. <em>Plan-and-Execute</em>는 수행한 뒤 남은 계획을 다시 검토할 수 있게 했습니다. <em>ReAct</em>에서는 도구를 한 번 호출하고 결과를 본 뒤, 그때그때 다음 행동을 고릅니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §4.1</a></p>
+              <p>연구진은 당시 모델 8개에 세 가지 방법을 적용했습니다. <em>Plan-and-Solve</em>는 계획을 먼저 세우고 단계별로 수행합니다. <em>Plan-and-Execute</em>는 수행한 뒤 남은 계획을 다시 검토할 수 있게 했습니다. <em>ReAct</em>에서는 한 번 조회하고 결과를 본 뒤, 그때그때 다음 행동을 고릅니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §4.1</a></p>
               <table class="exam-table results-table">
-                <caption>같은 GPT-4o에 조사 방법을 바꿔 적용한 결과</caption>
+                <caption>GPT-4o의 조사 방법별 성적. 문항별 최종 핵심어 포함 비율의 평균입니다.</caption>
                 <thead><tr><th scope="col">조사 방법</th><th scope="col">전체 과제</th><th scope="col">작성 과제</th></tr></thead>
                 <tbody>
                   <tr><th scope="row">Plan-and-Solve</th><td>47.60%</td><td>79.71%</td></tr>
@@ -76,7 +94,7 @@
                   <tr><th scope="row">ReAct</th><td>79.08%</td><td>65.41%</td></tr>
                 </tbody>
               </table>
-              <p>전체 평균에서는 GPT-4o에 ReAct를 붙인 조합이 79.08%로 가장 높았습니다. GPT-4o의 ReAct 결과를 조회 단계별로 보면 1단계 과제에서는 92.62%, 5단계 과제에서는 61.17%였습니다. 반면 별도로 구성한 작성 과제에서는 같은 GPT-4o에 Plan-and-Execute를 붙였을 때 결과가 더 높았습니다. 이 표의 백분율은 문항별로 찾은 핵심어 비율의 평균입니다. ‘전체 문항 중 몇 건을 완벽히 끝냈는가’와는 계산법이 다릅니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §4.2, 표 3, 부록 E.2</a></p>
+              <p>전체 평균에서는 GPT-4o에 ReAct를 붙인 조합이 79.08%로 가장 높았습니다. GPT-4o의 ReAct 결과를 조회 단계별로 보면 1단계 과제에서는 92.62%, 5단계 과제에서는 61.17%였습니다. 반면 별도로 구성한 작성 과제에서는 같은 GPT-4o에 Plan-and-Execute를 붙였을 때 결과가 더 높았습니다. <a class="source" href="https://aclanthology.org/2025.acl-long.116.pdf">원 논문 §4.2, 표 3, 부록 E.2</a></p>
             </section>
 
             <section id="scope">

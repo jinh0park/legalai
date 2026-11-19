@@ -64,28 +64,90 @@
                   <tr><th scope="row">환각</th><td>내용에 틀린 진술이 있거나, 인용한 출처가 주장과 맞지 않습니다.</td></tr>
                 </tbody>
               </table>
-              <p>논문이 소개한 사례에서는 실제 판결인 <cite lang="en">Planned Parenthood v. Reynolds</cite>가 인용됐습니다. 답변은 그 판결이 과거의 <cite lang="en">Planned Parenthood v. Casey</cite>를 설명한 부분에 기대었는데, 정작 <cite lang="en">Casey</cite>는 뒤에 연방대법원에서 번복됐습니다. 판결 링크만 누르면 출처는 확인됩니다. 그 답변을 검증하려면 인용된 판결이 어떤 맥락에서 <cite lang="en">Casey</cite>를 언급했고 그 법리가 이후 어떻게 바뀌었는지까지 읽어야 합니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 그림 2, §4.3</a></p>
+              <p>예비 실험에서 미국 연방헌법상 낙태 규제를 어떤 기준으로 심사하는지 묻자, Lexis+ AI는 아이오와주 판결인 <cite lang="en">Planned Parenthood v. Reynolds</cite>를 인용해 연방헌법상 ‘과도한 부담’ 기준이 적용된다고 답했습니다. 인용한 판결은 실제로 <cite lang="en">Planned Parenthood v. Casey</cite>의 기준을 설명합니다. 하지만 연방대법원은 이후 <cite lang="en">Dobbs</cite>에서 <cite lang="en">Casey</cite>를 뒤집었고, 논문은 이 질문에 적용할 연방헌법상 기준으로 합리성 심사(rational basis review)를 제시합니다. 링크를 열면 인용한 판결이 실재한다는 사실은 확인할 수 있습니다. 답변을 검증하려면 그 판결이 설명한 법리가 질문 시점에도 유효한지까지 봐야 합니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 그림 2, §4.3, 각주 2</a></p>
             </section>
 
             <section id="experiment">
               <h2>무엇을 물었고, 누가 채점했나요?</h2>
-              <p>연구진은 Lexis+ AI, Westlaw AI-Assisted Research, Ask Practical Law AI를 범용 GPT-4와 비교했습니다. 질문은 총 202개였습니다. 일반 법률 조사 80개, 관할이나 시점이 중요한 질문 70개, 틀린 전제를 깐 질문 22개, 판결의 작성자처럼 확인 가능한 사실을 묻는 질문 30개였습니다. 질문을 사전 등록한 뒤 2024년 3~5월 제품 화면에서 실험했고, 법률 지식을 갖춘 평가자가 응답과 인용 자료를 읽고 채점했습니다. 별도의 평가자가 뽑아서 다시 채점한 응답 48건에서 최종 분류 일치율은 85.4%였습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §5, 표 2</a></p>
-              <p>앞선 두 연구가 여기에 실제로 들어와 있습니다. <cite lang="en">LegalBench</cite>의 Rule QA 과제에서 <strong>질문 20개를 그대로 가져왔습니다</strong>. Dahl 외의 연구에서는 판례 사실을 확인하는 질문과 사용자의 틀린 전제를 점검하는 실험을 이어받았습니다. 그리고 앞 연구가 주로 사실과 맞는지를 봤다면, 이 논문의 배점표에는 답변과 인용 출처의 관계가 추가됐습니다. <a class="source" href="../legalbench/">LegalBench 해설</a> · <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §4–5</a></p>
+              <p>연구진은 Lexis+ AI, Westlaw AI-Assisted Research, Ask Practical Law AI를 범용 GPT-4와 비교했습니다. 질문은 총 202개였습니다. 일반 법률 조사 80개, 관할이나 시점이 중요한 질문 70개, 잘못된 전제를 담은 질문 22개, 판결의 작성자처럼 확인 가능한 사실을 묻는 질문 30개였습니다. 질문을 사전 등록한 뒤 2024년 3~5월 제품 화면에서 실험했고, 법률 지식을 갖춘 평가자가 응답과 인용 자료를 읽고 채점했습니다. 무작위로 추린 응답 48건은 네 번째 평가자가 기존 채점 결과를 보지 않고 다시 평가했습니다. 최종 분류가 일치한 비율은 85.4%였습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §5, 표 2</a></p>
+              <p>앞선 두 연구가 여기에 실제로 들어와 있습니다. <cite lang="en">LegalBench</cite>의 Rule QA 과제에서 <strong>질문 20개를 그대로 가져왔습니다</strong>. Dahl 외의 연구에서는 판례 사실을 확인하는 질문과 사용자의 틀린 전제를 점검하는 실험을 이어받았습니다. 그리고 앞 연구가 주로 사실과 맞는지를 봤다면, 이 논문은 인용한 자료가 답변의 주장을 뒷받침하는지도 확인했습니다. <a class="source" href="../legalbench/">LegalBench 해설</a> · <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §4–5</a></p>
             </section>
 
             <section id="results">
               <h2>환각률이 낮으면 더 자주 맞혔을까요?</h2>
-              <p>전체 질문을 분모로 계산한 환각률은 Lexis+ AI와 Ask Practical Law AI가 각각 <strong>17%</strong>, Westlaw AI-Assisted Research가 <strong>33%</strong>였습니다. 같은 실험에서 범용 GPT-4는 <strong>43%</strong>였습니다. 이 실험에서 세 상용 도구 모두 환각으로 분류된 답변 비율이 GPT-4보다 낮았습니다. 다만 논문의 ‘정확’ 분류까지 보면, 동일한 17%가 서로 다른 모습을 가리고 있었습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 그림 4, 부록 표 C1</a></p>
-              <table class="exam-table results-table">
-                <caption>2024년 실험에서의 상용 도구 응답 비율</caption>
-                <thead><tr><th scope="col">도구</th><th scope="col">정확</th><th scope="col">환각</th></tr></thead>
-                <tbody>
-                  <tr><th scope="row">Lexis+ AI</th><td>65%</td><td>17%</td></tr>
-                  <tr><th scope="row">Westlaw AI-Assisted Research</th><td>41%</td><td>33%</td></tr>
-                  <tr><th scope="row">Ask Practical Law AI</th><td>19%</td><td>17%</td></tr>
-                </tbody>
-              </table>
-              <p>Lexis+ AI는 맞고 근거가 있는 답을 낸 비율이 65%였고, Ask Practical Law AI는 19%였습니다. 전체 질문 중 환각이 아닌 나머지에는 거부하거나 근거를 달지 않은 답도 들어 있기 때문입니다. 저자들이 직접 응답한 경우만 따로 떼어 환각률을 비교한 이유입니다. 새 연구에서 환각률을 볼 때도 <strong>분모가 전체 질문인지, 답변을 받은 질문인지</strong>를 확인하면 같은 숫자를 다르게 읽는 일을 피할 수 있습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §6.1, 그림 4</a></p>
+              <p>전체 202개 질문을 기준으로 보면 Lexis+ AI와 Ask Practical Law AI의 환각률은 모두 약 <strong>17%</strong>였습니다. 그런데 Lexis+ AI는 65%에서 정확하고 근거 있는 답을 냈고, Ask Practical Law AI는 20%에서만 그랬습니다. Ask Practical Law AI는 답변을 거부하거나 근거 없이 답한 경우 등을 합친 ‘불완전’ 응답이 63%였습니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 그림 4, 부록 표 C1</a></p>
+              <figure class="score-figure paper-figure" id="response-figure">
+                <h3>불완전 응답을 빼면 환각률은 어떻게 달라질까요?</h3>
+                <ul class="chart-legend" aria-label="전체 응답 분류">
+                  <li><span class="bar-pass" aria-hidden="true"></span>정확</li>
+                  <li><span class="bar-partial" aria-hidden="true"></span>불완전</li>
+                  <li><span class="bar-error" aria-hidden="true"></span>환각</li>
+                </ul>
+                <ul class="response-chart" aria-label="도구별 응답 분류와 직접 응답 기준 환각률">
+                  <li>
+                    <strong>Lexis+ AI</strong>
+                    <div class="response-bar">
+                      <span class="bar-label">전체 202개 질문</span>
+                      <div class="stack-bar" role="img" aria-label="정확 65%, 불완전 18%, 환각 17%">
+                      <span class="bar-pass" style="--part: 131">65%</span>
+                      <span class="bar-partial" style="--part: 37">18%</span>
+                      <span class="bar-error" style="--part: 34">17%</span>
+                      </div>
+                    </div>
+                    <div class="conditional-bar">
+                      <span class="bar-label">직접 응답 기준</span>
+                      <div class="rate-track"><span style="--rate: 21%" aria-hidden="true"></span><b>21%</b></div>
+                    </div>
+                  </li>
+                  <li>
+                    <strong>Westlaw AI-Assisted Research</strong>
+                    <div class="response-bar">
+                      <span class="bar-label">전체 202개 질문</span>
+                      <div class="stack-bar" role="img" aria-label="정확 42%, 불완전 25%, 환각 33%">
+                      <span class="bar-pass" style="--part: 85">42%</span>
+                      <span class="bar-partial" style="--part: 51">25%</span>
+                      <span class="bar-error" style="--part: 66">33%</span>
+                      </div>
+                    </div>
+                    <div class="conditional-bar">
+                      <span class="bar-label">직접 응답 기준</span>
+                      <div class="rate-track"><span style="--rate: 44%" aria-hidden="true"></span><b>44%</b></div>
+                    </div>
+                  </li>
+                  <li>
+                    <strong>Ask Practical Law AI</strong>
+                    <div class="response-bar">
+                      <span class="bar-label">전체 202개 질문</span>
+                      <div class="stack-bar" role="img" aria-label="정확 20%, 불완전 63%, 환각 17%">
+                      <span class="bar-pass" style="--part: 40">20%</span>
+                      <span class="bar-partial" style="--part: 128">63%</span>
+                      <span class="bar-error" style="--part: 34">17%</span>
+                      </div>
+                    </div>
+                    <div class="conditional-bar">
+                      <span class="bar-label">직접 응답 기준</span>
+                      <div class="rate-track"><span style="--rate: 46%" aria-hidden="true"></span><b>46%</b></div>
+                    </div>
+                  </li>
+                  <li>
+                    <strong>GPT-4</strong>
+                    <div class="response-bar">
+                      <span class="bar-label">전체 202개 질문</span>
+                      <div class="stack-bar" role="img" aria-label="정확 49%, 불완전 8%, 환각 43%">
+                      <span class="bar-pass" style="--part: 98">49%</span>
+                      <span class="bar-partial" style="--part: 17">8%</span>
+                      <span class="bar-error" style="--part: 87">43%</span>
+                      </div>
+                    </div>
+                    <div class="conditional-bar">
+                      <span class="bar-label">직접 응답 기준</span>
+                      <div class="rate-track"><span style="--rate: 47%" aria-hidden="true"></span><b>47%</b></div>
+                    </div>
+                  </li>
+                </ul>
+                <figcaption><a href="https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf#page=10">원 논문 그림 4</a>의 두 비교를 부록 표 C1의 문항 수로 다시 계산했습니다. 직접 응답 기준은 불완전 응답을 제외한 뒤 같은 환각 건수를 나눈 값입니다. 비율은 정수로 반올림했으며, 신뢰구간은 원 논문 그림에 표시돼 있습니다.</figcaption>
+              </figure>
+              <p>Ask Practical Law AI의 환각 건수는 34건으로 같습니다. 전체 202개 질문으로 나누면 약 17%이고, 불완전한 128건을 뺀 74건으로 나누면 약 46%입니다. Lexis+ AI 역시 환각은 34건이었지만, 불완전 응답을 뺀 165건을 분모로 두면 약 21%였습니다. 환각률을 읽을 때는 도구가 얼마나 자주 답을 내놓았는지도 함께 봐야 합니다. <a class="source" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413">원 논문 §6.1, 그림 4, 부록 표 C1</a></p>
             </section>
 
             <section id="scope">

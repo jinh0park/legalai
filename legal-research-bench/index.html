@@ -30,6 +30,7 @@
             <cite lang="en">Legal Research Bench: Measuring End-to-End Reliability in Long-Horizon Legal Research Agents</cite>
             <span>Katrina Drozdov · Oliver Chen · Langston Nashold · Rayan Krishnan</span>
             <span>arXiv 사전 공개 · 2026</span>
+            <span>COLM 2026 AI Measurement Science Workshop</span>
           </div>
         </header>
 
@@ -49,7 +50,7 @@
           <div class="article-body">
             <section id="question">
               <h2>잘 쓴 답변이 법률 조사를 끝낸 답변일까요?</h2>
-              <p>법률 조사 메모에 원칙이 정확히 적혀 있어도, 결론을 바꾸는 예외가 빠졌다면 그 메모만으로 사건을 판단하기는 어렵습니다. <cite lang="en">Legal Research Bench</cite>를 만든 Drozdov 외는 이 문제를 평가 기준으로 옮겼습니다. 에이전트에 웹과 판례 검색 도구를 주고 미국 법률 조사를 맡긴 뒤, <strong>필수 판단을 빠짐없이 다루고 인용 출처를 검증할 수 있는 답안</strong>을 냈는지 알아봅니다. 이 글에서 다루는 수치는 2026년 arXiv 공개본에 실린 실험입니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §1, §3.3</a></p>
+              <p>법률 조사 메모에 원칙이 정확히 적혀 있어도, 결론을 바꾸는 예외가 빠졌다면 그 메모만으로 사건을 판단하기는 어렵습니다. <cite lang="en">Legal Research Bench</cite>를 만든 Drozdov 외는 이 문제를 평가 기준으로 옮겼습니다. 에이전트에 웹과 판례 검색 도구를 주고 미국 법률 조사를 맡긴 뒤, <strong>필수 쟁점을 빠짐없이 다루고 인용 출처를 검증할 수 있는 답안</strong>을 냈는지 알아봅니다. 이 글에서 다루는 수치는 2026년 arXiv 공개본에 실린 실험입니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §1, §3.3</a></p>
               <p>저자들은 <cite lang="en">LegalAgentBench</cite>를 중국 법률 분야에서 도구 사용을 평가한 선행 연구로 인용합니다. 앞 연구가 최종 답안에 드러난 중간 단서까지 세어 진행 정도를 보았다면, 여기는 <strong>어떤 경로로 조사했든 최종 답안이 기준을 충족하는지</strong>에 점수를 줍니다. 상용 도구가 실재하는 판례를 인용하면서도 잘못된 주장을 낼 수 있음을 보여준 <cite lang="en">Hallucination-Free?</cite>도 인용하며, 법적 근거를 채점에 넣은 배경을 설명합니다. <a class="source" href="../legalagentbench/">LegalAgentBench 해설</a> · <a class="source" href="../hallucination-free/">Hallucination-Free? 해설</a> · <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §2</a></p>
             </section>
 
@@ -67,26 +68,62 @@
 
             <section id="results">
               <h2>부분점수 85.4%와 전 항목 통과 42.9% 사이</h2>
-              <p>공개본의 전체 문항 결과표에서 Claude Opus 4.8은 가중 부분점수 <strong>85.4%</strong>를 받았고, 전 항목을 통과한 질문은 <strong>42.9%</strong>였습니다. 두 수치는 같은 출력에 다른 기준을 적용한 결과입니다. 전체 모델의 오답을 들여다보면, 실패한 답안 중 약 41%는 중요도가 가장 높은 3점 항목을 적어도 하나 놓쳤습니다. 전 항목 기준에서 떨어진 답안이 모두 사소한 누락 때문에 실패한 것은 아니라는 뜻입니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §5.1–5.2, 표 3, 부록 E</a></p>
+              <p>Claude Opus 4.8이 받은 점수를 문항마다 가중치가 반영된 만점으로 나누고 평균을 내면 <strong>85.4%</strong>입니다. 전체 413개 문항에서 모든 채점 항목과 출처 검증을 통과한 비율은 <strong>42.9%</strong>였습니다. 첫 수치는 한 답안이 기준을 얼마나 충족했는지 보여주고, 두 번째 수치는 기준을 모두 충족한 답안이 얼마나 자주 나왔는지 보여줍니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §5.1, 표 3</a></p>
+              <figure class="score-figure paper-figure" id="failure-figure">
+                <h3>전 항목을 통과하지 못한 답안은 무엇을 놓쳤을까요?</h3>
+                <ul class="chart-legend" aria-label="문항별 결과">
+                  <li><span class="bar-pass" aria-hidden="true"></span>전 항목 통과</li>
+                  <li><span class="bar-partial" aria-hidden="true"></span>1·2점 항목에서만 실패</li>
+                  <li><span class="bar-error" aria-hidden="true"></span>3점 항목을 하나 이상 놓침</li>
+                </ul>
+                <ul class="response-chart single-chart" aria-label="전 항목 통과율 상위 세 모델의 문항별 결과">
+                  <li>
+                    <strong>Claude Opus 4.8</strong>
+                    <div class="stack-bar" role="img" aria-label="전 항목 통과 43%, 1·2점 항목에서만 실패 35%, 3점 항목을 하나 이상 놓침 22%">
+                      <span class="bar-pass" style="--part: 43">43%</span>
+                      <span class="bar-partial" style="--part: 35">35%</span>
+                      <span class="bar-error" style="--part: 22">22%</span>
+                    </div>
+                  </li>
+                  <li>
+                    <strong>GPT-5.5</strong>
+                    <div class="stack-bar" role="img" aria-label="전 항목 통과 40%, 1·2점 항목에서만 실패 38%, 3점 항목을 하나 이상 놓침 22%">
+                      <span class="bar-pass" style="--part: 40">40%</span>
+                      <span class="bar-partial" style="--part: 38">38%</span>
+                      <span class="bar-error" style="--part: 22">22%</span>
+                    </div>
+                  </li>
+                  <li>
+                    <strong>Claude Sonnet 4.6</strong>
+                    <div class="stack-bar" role="img" aria-label="전 항목 통과 39%, 1·2점 항목에서만 실패 35%, 3점 항목을 하나 이상 놓침 26%">
+                      <span class="bar-pass" style="--part: 39">39%</span>
+                      <span class="bar-partial" style="--part: 35">35%</span>
+                      <span class="bar-error" style="--part: 26">26%</span>
+                    </div>
+                  </li>
+                </ul>
+                <figcaption><a href="https://arxiv.org/pdf/2610.00609#page=15">원 논문 그림 9와 표 3</a>을 바탕으로 전 항목 통과율 상위 세 모델을 골라 그렸습니다. 막대의 분모는 모델별 전체 413개 문항입니다. 1·2점 항목에서만 실패한 비율은 반올림한 두 비율을 100%에서 빼서 구한 근삿값입니다.</figcaption>
+              </figure>
+              <p>실패한 답안만 모아 보면 비중이 달라집니다. 논문에 나온 13개 모델의 실패 답안 중 약 <strong>41%</strong>는 가장 중요한 3점 항목을 적어도 하나 놓쳤습니다. 누락된 항목이 몇 개인지뿐 아니라, 그 항목이 결론에 얼마나 중요한지도 봐야 하는 이유입니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §5.2, 부록 E</a></p>
               <p>질문의 성격도 결과에 영향을 줬습니다. 여러 근거를 종합하거나 상충하는 근거를 조정해야 하는 질문에서 전 항목 통과율은 모델 평균 20.4%였고, 해당 유형에 속하지 않는 질문에서는 29.9%였습니다. 채점 항목 수와 필요한 출처 수를 고려한 분석에서도 그 차이가 남았습니다. 법령을 하나 찾아 맞히는 조사와 여러 출처의 관계를 설명하는 조사를 나눠 볼 이유입니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §5.3, 그림 3, 부록 C</a></p>
             </section>
 
             <section id="tools">
               <h2>검색을 더 많이 하면 더 정확해질까요?</h2>
               <p>동일한 모델들을 도구 없이 한 번만 답하는 조건에서도 시험했습니다. 도구를 사용할 수 있던 경우에 비해 전 항목 통과율은 평균 22.5%포인트 떨어졌습니다. 반면 이미 도구를 쓰는 모델끼리 비교했을 때는 호출 횟수나 비용만으로 정확도를 예측하기 어려웠습니다. 이 실험은 도구 사용이 가능한 반복 조사와 도구 없는 단일 응답을 비교한 것이므로, 특정 검색 도구 하나를 추가했을 때의 효과까지 따로 보여주지는 않습니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §5.4–5.5, 표 4</a></p>
-              <p>부록의 장비 리스 문제를 보면 실패가 더 구체적으로 보입니다. 한 모델은 확인 가능한 출처 여덟 개를 인용했지만 필수 항목 하나를 빠뜨렸습니다. 다른 모델은 내용의 채점 항목을 모두 충족했지만 근거를 한 건도 인용하지 않아 출처 검사를 통과하지 못했습니다. 어느 쪽도 전 항목 정답으로 분류되지 않았습니다. 조사량, 답변의 내용, 근거의 검증 가능성을 따로 읽어야 하는 이유가 한 문항에 들어 있습니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 부록 G</a></p>
+              <p>부록에 나온 장비 리스 문제에서는 냉동 트레일러가 고장 난 뒤 임차인이 리스료 지급을 중단할 수 있는지, 임대인이 장비 결함에 책임지는지를 물었습니다. Claude Opus 4.8은 확인 가능한 출처 여덟 개를 인용했지만 필수 항목 하나를 빠뜨렸습니다. Kimi K2.6은 내용의 채점 항목을 모두 충족했지만 출처를 한 건도 인용하지 않아 출처 검사를 통과하지 못했습니다. 어느 쪽도 전 항목 정답으로 분류되지 않았습니다. 조사량, 답변의 내용, 근거의 검증 가능성을 따로 읽어야 하는 이유가 한 문항에 들어 있습니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 부록 G</a></p>
             </section>
 
             <section id="scope">
               <h2>이 숫자를 다음 논문과 비교하려면</h2>
-              <p>논문이 본 대상은 정답에 대해 변호사들이 합의할 수 있도록 고른 미국 영어권 법률 조사입니다. 협상, 불확실한 상황에서의 전략 판단, 의뢰인 상담 같은 활동까지 포함하는 수치로 읽기는 어렵습니다. 모델마다 문항을 한 번씩 실행했으므로, 같은 모델에 같은 사건을 다시 물었을 때 결과가 얼마나 안정적인지도 별도로 확인해야 합니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §6</a></p>
+              <p>논문이 본 대상은 정답에 대해 변호사들이 합의할 수 있도록 고른 영어로 진행하는 미국 법률 조사입니다. 협상, 불확실한 상황에서의 전략 판단, 의뢰인 상담 같은 활동까지 포함하는 수치로 읽기는 어렵습니다. 모델마다 문항을 한 번씩 실행했으므로, 같은 모델에 같은 사건을 다시 물었을 때 결과가 얼마나 안정적인지도 별도로 확인해야 합니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §6</a></p>
               <p>후속 연구에서 통과율이 더 높게 나오면 먼저 <strong>같은 문항 묶음인지, 같은 도구를 썼는지, 출처 검증을 같은 방법으로 했는지</strong>를 살펴보시면 좋습니다. 저자들의 별도 리더보드도 208개 테스트 문항을 기준으로 하므로 413개 전체를 쓴 논문의 수치와 분모가 다릅니다. 법률 AI가 더 잘 조사하게 됐는지 보려면 점수와 함께 정답을 인정한 조건을 읽어야 합니다. <a class="source" href="https://arxiv.org/html/2610.00609">사전 공개본 §3.2, 표 3</a> · <a class="source" href="https://www.vals.ai/benchmarks/legal_research">리더보드의 평가 방법</a></p>
             </section>
 
             <section class="references" id="references">
               <h2>참고 문헌</h2>
               <ol>
-              <li>Katrina Drozdov, Oliver Chen, Langston Nashold, Rayan Krishnan. <a href="https://arxiv.org/abs/2610.00609" lang="en">Legal Research Bench: Measuring End-to-End Reliability in Long-Horizon Legal Research Agents</a>. arXiv:2610.00609 (2026년 사전 공개).</li>
+              <li>Katrina Drozdov, Oliver Chen, Langston Nashold, Rayan Krishnan. <a href="https://arxiv.org/abs/2610.00609" lang="en">Legal Research Bench: Measuring End-to-End Reliability in Long-Horizon Legal Research Agents</a>. arXiv:2610.00609 (2026년 사전 공개). COLM 2026 AI Measurement Science Workshop.</li>
               <li><a href="https://arxiv.org/html/2610.00609">본문과 부록</a> · <a href="https://github.com/vals-ai/legal-research-bench">저자 공개 실행 환경과 샘플</a></li>
               </ol>
             </section>

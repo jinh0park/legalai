@@ -38,7 +38,7 @@
             <h2 id="toc-title">목차</h2>
             <ol>
               <li><a href="#question">시험은 통과했는데, 판례를 물으면 어떨까요?</a></li>
-              <li><a href="#questions">판례에 어떤 질문을 던졌나요?</a></li>
+              <li><a href="#questions">판례에 관해 무엇을 물었나요?</a></li>
               <li><a href="#measurement">정답이 딱 떨어지지 않을 때는 어떻게 채점했나요?</a></li>
               <li><a href="#results">58%라는 수치는 무엇을 뜻하나요?</a></li>
               <li><a href="#lineage">판례 데이터베이스를 붙이면 문제가 풀릴까요?</a></li>
@@ -48,13 +48,13 @@
           <div class="article-body">
             <section id="question">
               <h2>시험은 통과했는데, 판례를 물으면 어떨까요?</h2>
-              <p>존재하는 사건의 이름을 정확히 알려주고 판결문 한 문장을 인용해 달라고 하면, 언어모델은 원문에 있는 문장을 내놓을까요? Dahl 외는 2024년 논문에서 이런 질문을 미국 연방법원 판례에 대규모로 던졌습니다. 서론에서 변호사시험 연구와 LegalBench를 함께 인용합니다. 앞선 연구들이 보여준 법률 과제 수행 능력을 배경으로, 이 논문은 <strong>특정 사건에 관한 진술이 실제 판결 기록과 맞는지</strong>를 따로 살펴봤습니다. 판례 자료와 질문을 별도로 구성했습니다. <a class="source" href="../legalbench/">앞 글 · LegalBench</a> · <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §1, §4</a></p>
+              <p>존재하는 사건의 이름을 정확히 알려주고 판결문 한 문장을 인용해 달라고 하면, 언어모델은 원문에 있는 문장을 내놓을까요? Dahl 외는 2024년 논문에서 여러 언어모델에 미국 연방법원 판례를 묻는 질문을 반복했습니다. 서론에서 변호사시험 연구와 LegalBench를 함께 인용합니다. 앞선 연구들이 보여준 법률 과제 수행 능력을 배경으로, 이 논문은 <strong>특정 사건에 관한 진술이 실제 판결 기록과 맞는지</strong>를 따로 살펴봤습니다. 판례 자료와 질문을 별도로 구성했습니다. <a class="source" href="../legalbench/">앞 글 · LegalBench</a> · <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §1, §4</a></p>
               <p>저자들은 환각을 설명하면서, 답변이 훈련 자료에 충실한지, 프롬프트에 충실한지, 외부 세계의 사실과 맞는지를 구별합니다. 이 논문에서 주로 관심을 두는 것은 세 번째입니다. 사용자가 실제로는 없었던 반대의견을 전제로 질문할 경우, 질문에 충실하게 내용을 지어내는 답변은 판결 기록에는 어긋납니다. 법률 분야에서 이런 차이가 특히 큰 이유입니다. <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §2.3</a></p>
             </section>
 
             <section id="questions">
-              <h2>판례에 어떤 질문을 던졌나요?</h2>
-              <p>연방대법원, 연방항소법원, 연방지방법원의 판례를 대상으로 삼았습니다. 법원의 위계와 지역, 선고 시기, 사건의 인용망상 중요도에 따라 결과를 살피기 위해 표본을 구성했습니다. 평가 대상은 당시 버전의 GPT-4, GPT-3.5, PaLM 2, Llama 2 네 모델이었습니다. 예시 없이 묻는 조건과 예시를 세 개 주는 조건 등을 포함해, 실행한 질의는 모델 전체를 합쳐 80만 건을 넘었습니다. <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §4.1, §4.4</a></p>
+              <h2>판례에 관해 무엇을 물었나요?</h2>
+              <p>연방대법원, 연방항소법원, 연방지방법원의 판례를 대상으로 삼았습니다. 법원의 위계와 지역, 선고 시기, 다른 판결이 그 사건을 어떻게 인용했는지에 따라 계산한 중요도별로 결과를 비교하기 위해 표본을 구성했습니다. 평가 대상은 당시 버전의 GPT-4, GPT-3.5, PaLM 2, Llama 2 네 모델이었습니다. 같은 사건을 두고 여러 모델과 질문 유형을 시험했습니다. 예시 없이 묻거나 예시를 세 개 주는 조건 등을 합쳐, 모델에 질문한 횟수는 80만 건을 넘었습니다. <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §4.1, §4.4</a></p>
               <p>질문의 난이도는 달랐습니다. 법원이나 다수의견 작성자를 맞히는 질문부터, 원심을 유지했는지 파기했는지 묻는 질문, 판결문에 실제로 들어 있는 문장을 인용하거나 그 판결이 인용한 선례를 찾는 질문도 있었습니다. 더 복잡한 질문은 사건의 절차적 경과, 핵심 쟁점, 판시사항을 설명해 달라고 했습니다. <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §3, 표 2</a></p>
             </section>
 
@@ -67,7 +67,7 @@
             <section id="results">
               <h2>58%라는 수치는 무엇을 뜻하나요?</h2>
               <p>논문은 무작위로 고른 미국 연방법원 사건에 관한 직접적이고 검증 가능한 질문에서 모델에 따라 환각률이 <strong>58%(GPT-4)에서 88%(Llama 2)</strong>에 이르렀다고 요약합니다. 이 수치는 연구가 정한 사건 표본, 질문, 모델 버전에서 나온 것입니다. 세부 결과를 보면 법원이 낮은 심급일수록, 사건의 중요도가 낮을수록 오류가 더 많아지는 경향이 있었습니다. 연방대법원 사건의 선고 시기를 나눠 보면 아주 오래된 사건과 표본에서 가장 최근인 사건 모두에서 어려움이 나타났습니다. 평균만 읽으면 이런 차이는 보이지 않습니다. <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §1, §5.1, 그림 2·4–6</a></p>
-              <p>질문의 전제도 바꿔봤습니다. 번복된 적 없는 대법원 판례가 ‘언제 번복됐느냐’고 물었더니, 일부 모델은 전제에 이의를 제기하는 대신 연도를 제시했습니다. 자기 확신과 실제 정답 여부가 얼마나 들어맞는지도 조사했는데, 모델이 자신의 오류 가능성을 안정적으로 구별하기는 어려웠습니다. 판례 질문을 이해했다는 인상과 그 답변이 참이라는 증거 사이의 간격이 드러난 부분입니다. <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §5.2–5.3</a></p>
+              <p>질문의 전제도 바꿔봤습니다. 번복된 적 없는 대법원 판례가 ‘언제 번복됐느냐’고 물었더니, 일부 모델은 전제에 이의를 제기하는 대신 연도를 제시했습니다. 연구진은 답변마다 확신 점수를 산출하고, 확신이 비슷한 답변끼리 묶어 실제로 환각이 없었던 비율을 계산했습니다. 모델마다 차이는 있었지만, 대체로 확신 점수가 실제로 환각이 없었던 비율보다 높았습니다. <a class="source" href="https://dho.stanford.edu/wp-content/uploads/Hallucinations_JLA.pdf">출판본 §5.2–5.3</a></p>
             </section>
 
             <section id="lineage">
